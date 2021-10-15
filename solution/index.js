@@ -12,7 +12,7 @@ module.exports = function (Homework) {
     };
   }
 
-  return async function (array, fn, initialValue, cb) {
+  return async function reduce(array, fn, initialValue, cb) {
     const getLength = promisify(array.length);
     const getItem = promisify(array.get);
     const getSum = promisify(add);
