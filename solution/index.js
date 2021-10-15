@@ -1,4 +1,15 @@
 module.exports = function (Homework) {
+  const {
+    AsyncArray,
+    add,
+    subtract,
+    multiply,
+    divide,
+    less,
+    equal,
+    lessOrEqual,
+  } = Homework;
+
   function promisify(f) {
     return function (...args) {
       return new Promise((resolve) => {
