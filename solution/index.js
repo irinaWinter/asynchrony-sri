@@ -12,7 +12,7 @@ module.exports = function (Homework) {
     };
   }
 
-  return async function reduce(array, fn, initialValue, cb) {
+  return async function (array, fn, initialValue, cb) {
     const getLength = promisify(array.length);
     const getItem = promisify(array.get);
     const getSum = promisify(add);
@@ -27,9 +27,7 @@ module.exports = function (Homework) {
     while (check) {
       const current = await getItem(i).then((res) => res);
 
-      result = await fnPromisse(result, current, i, (src = undefined)).then(
-        (res) => res
-      );
+      result = await fnPromisse(result, current, i, array).then((res) => res);
 
       i = await getSum(i, 1).then((res) => res);
       check = await compare(i, length).then((res) => res);
