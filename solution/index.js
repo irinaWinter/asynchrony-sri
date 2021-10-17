@@ -1,18 +1,18 @@
 module.exports = function (Homework) {
   const { add, less } = Homework;
 
-  function promisify(f) {
-    return function (...args) {
+  const promisify = (f) => {
+    return (...args) => {
       return new Promise((resolve) => {
-        function callback(result) {
+        const callback = (result) => {
           resolve(result);
-        }
+        };
 
         args.push(callback);
         f.call(this, ...args);
       });
     };
-  }
+  };
 
   async function reduce(asyncArray, fn, initialValue, cb) {
     const getLength = promisify(asyncArray.length);
@@ -40,7 +40,5 @@ module.exports = function (Homework) {
     return cb(result);
   }
 
-  return (array, fn, initialValue, cb) => {
-    reduce(array, fn, initialValue, cb);
-  };
+  return reduce(array, fn, initialValue, cb);
 };
