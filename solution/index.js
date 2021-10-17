@@ -40,5 +40,7 @@ module.exports = function (Homework) {
     return cb(result);
   }
 
-  return reduce(array, fn, initialValue, cb);
+  return (array, fn, initialValue, cb) => {
+    reduce(array, fn, initialValue, cb);
+  };
 };
